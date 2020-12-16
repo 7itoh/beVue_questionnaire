@@ -1,20 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <HeaderTitle :title="title" />
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import HeaderTitle from "./components/elements/HeaderTitle";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HeaderTitle,
+  },
+  data() {
+    return {
+      title: "診察フォーム",
+    };
+  },
+};
 </script>
 
-<style>
+<style lang="scss">
+@import "../node_modules/bulma/bulma.sass";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,5 +30,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+div {
+  margin-bottom: 20px;
 }
 </style>
