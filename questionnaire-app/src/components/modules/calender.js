@@ -1,4 +1,5 @@
 'use strict';
+
 class YearDate {
     // 設定 年
     year = new Date().getFullYear();
@@ -39,7 +40,7 @@ class YearDate {
         nengo : '令和',
         maxSpan : this.year - 2018,
         init : 0,
-        // start 2019 ~
+        // 2019 ~ 2
     }
 
     constructor() { 
@@ -53,28 +54,28 @@ class YearDate {
             // 大正
             if (resultYear < this.taishou.maxYear) {
                 let nengoNum = this.taishou.maxSpan - this.taishou.init
-                let yearbox = `${resultYear}年 (${this.taishou.nengo}${nengoNum})`
+                let yearbox = `${resultYear}年 (${this.taishou.nengo} ${nengoNum})`
                 this.yearList.push(yearbox);
                 this.taishou.init++;
             }
             // 昭和
             else if (resultYear < this.showa.maxYear) {
                 let nengoNum = this.showa.maxSpan - this.showa.init
-                let yearbox = `${resultYear}年 (${this.showa.nengo}${nengoNum})`
+                let yearbox = `${resultYear}年 (${this.showa.nengo} ${nengoNum})`
                 this.yearList.push(yearbox);
                 this.showa.init++;
             }
             // 平成
             else if (resultYear < this.heisei.maxYear) {
                 let nengoNum = this.heisei.maxSpan - this.heisei.init
-                let yearbox = `${resultYear}年 (${this.heisei.nengo}${nengoNum})`
+                let yearbox = `${resultYear}年 (${this.heisei.nengo} ${nengoNum})`
                 this.yearList.push(yearbox);
                 this.heisei.init++;
             }
             // 令和
             else {
                 let nengoNum = this.reiwa.maxSpan - this.reiwa.init
-                let yearbox = `${resultYear}年 (${this.reiwa.nengo}${nengoNum})`
+                let yearbox = `${resultYear}年 (${this.reiwa.nengo} ${nengoNum})`
                 this.yearList.push(yearbox);
                 this.reiwa.init++;
             }

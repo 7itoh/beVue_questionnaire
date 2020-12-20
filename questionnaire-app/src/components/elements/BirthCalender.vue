@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import yearDate from "../modules/definition.js";
+import yearDate from "../modules/definition";
 
 export default {
   name: "BirthCalender",
