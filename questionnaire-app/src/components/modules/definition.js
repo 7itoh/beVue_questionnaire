@@ -49,32 +49,32 @@ class YearDate {
     }
     setYear() { 
         for (let i = 0; i < this.maxNumYear; i++) { 
-            let resultYear = this.year - i;
+            const resultYear = this.year - i;
             // 大正
             if (resultYear < this.taishou.maxYear) {
-                let nengoNum = this.taishou.maxSpan - this.taishou.init
-                let yearbox = `${resultYear}年 (${this.taishou.nengo}${nengoNum})`
+                const nengoNum = this.taishou.maxSpan - this.taishou.init
+                const yearbox = `${resultYear}年 (${this.taishou.nengo}${nengoNum})`
                 this.yearList.push(yearbox);
                 this.taishou.init++;
             }
             // 昭和
             else if (resultYear < this.showa.maxYear) {
-                let nengoNum = this.showa.maxSpan - this.showa.init
-                let yearbox = `${resultYear}年 (${this.showa.nengo}${nengoNum})`
+                const nengoNum = this.showa.maxSpan - this.showa.init
+                const yearbox = `${resultYear}年 (${this.showa.nengo}${nengoNum})`
                 this.yearList.push(yearbox);
                 this.showa.init++;
             }
             // 平成
             else if (resultYear < this.heisei.maxYear) {
-                let nengoNum = this.heisei.maxSpan - this.heisei.init
-                let yearbox = `${resultYear}年 (${this.heisei.nengo}${nengoNum})`
+                const nengoNum = this.heisei.maxSpan - this.heisei.init
+                const yearbox = `${resultYear}年 (${this.heisei.nengo}${nengoNum})`
                 this.yearList.push(yearbox);
                 this.heisei.init++;
             }
             // 令和
             else {
-                let nengoNum = this.reiwa.maxSpan - this.reiwa.init
-                let yearbox = `${resultYear}年 (${this.reiwa.nengo}${nengoNum})`
+                const nengoNum = this.reiwa.maxSpan - this.reiwa.init
+                const yearbox = `${resultYear}年 (${this.reiwa.nengo}${nengoNum})`
                 this.yearList.push(yearbox);
                 this.reiwa.init++;
             }
