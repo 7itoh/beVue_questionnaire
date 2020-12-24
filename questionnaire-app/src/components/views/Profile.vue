@@ -3,17 +3,46 @@
     <form action="">
       <section>
         <div>
-          <TwowayQARadio
-            :question="gender"
-            :answer1="male"
-            :answer2="female"
-            :val1="genderval1"
-            :val2="genderval2"
-            v-model="genders"
+          <input
+            type="radio"
+            name="gender"
+            :value="male"
+            v-model="updateRadio1"
           />
+          <label for="gender">男性</label>
+          <input
+            type="radio"
+            name="gender"
+            :value="female"
+            v-model="updateRadio1"
+          />
+          <label for="gender">女性</label>
         </div>
       </section>
-      <BirthCalender />
+      <!-- <BirthCalender /> -->
+      <div class="birth_calender">
+        <!-- 年の選択 -->
+        <select class="select" v-model="yearSelected">
+          <option v-for="(year, index) in yearList" :key="index" :value="year">
+            {{ year }}
+          </option>
+        </select>
+        <label for="yearSelected">年</label>
+        <!-- 月の選択 -->
+        <select class="select" v-model="monthSelected">
+          <option v-for="month in monthList" :key="month" :value="month">
+            {{ month }}
+          </option>
+        </select>
+        <label for="monthSelected">月</label>
+        <!-- 日の選択 -->
+        <select class="select" v-model="daySelected">
+          <option v-for="day in dayList" :key="day" :value="day">
+            {{ day }}
+          </option>
+        </select>
+        <label for="daySelected">日</label>
+      </div>
     </form>
     <div>
       <BaseButton
@@ -25,40 +54,59 @@
   </div>
 </template>
 <script>
-import TwowayQARadio from "../elements/TwowayQARadio";
-import BirthCalender from "../elements/BirthCalender";
+// import BirthCalender from "../elements/BirthCalender";
 import BaseButton from "../elements/BaseButton";
+import yearDate from "../modules/definition";
 
 export default {
   name: "Profile",
   components: {
-    TwowayQARadio,
-    BirthCalender,
+    // BirthCalender,
     BaseButton,
   },
   data() {
     return {
       male: "男性",
       female: "女性",
-      genderval1: "male",
-      genderval2: "female",
-      birthday: "-生年月日-",
-      gender: "-性別-",
-      genders: "",
-      birthdate: {
-        year: "",
-        month: "",
-        day: "",
-      },
+      yearList: [],
+      yearSelected: null,
+      monthList: [],
+      monthSelected: null,
+      dayList: [],
+      daySelected: null,
     };
+  },
+  computed: {
+    updateRadio1: {
+      get() {
+        return this.$store.state.radioValue1A;
+      },
+      set(value) {
+        this.$store.commit("updateRadio1A", value);
+      },
+    },
   },
   methods: {
     toQAcheck() {
       this.$router.push({ path: "qacheck" });
       // ↓カスタムコンポーネントを利用した値の取得がまだできていません。
-      console.log(this.genders);
-      console.log(this.birth);
+      this.$store.state.calender.year = this.yearSelected;
+      this.$store.state.calender.month = this.monthSelected;
+      this.$store.state.calender.day = this.daySelected;
     },
+  },
+  created() {
+    // 年
+    this.yearList = yearDate.setYear();
+    this.yearSelected = this.yearList[this.yearList.length * 0.6];
+
+    // 月
+    this.monthList = yearDate.setMonth();
+    this.monthSelected = this.monthList[0];
+
+    // 日
+    this.dayList = yearDate.setDay();
+    this.daySelected = this.dayList[0];
   },
 };
 </script>

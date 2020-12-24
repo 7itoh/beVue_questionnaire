@@ -1,5 +1,5 @@
 <template>
-  <div id="sample">
+  <div class="birth_calender">
     <!-- 年の選択 -->
     <select class="select" v-model="yearSelected">
       <option v-for="(year, index) in yearList" :key="index" :value="year">

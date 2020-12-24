@@ -8,21 +8,21 @@
             type="radio"
             id="life_insurance_yes"
             name="life_insurance"
-            value="yes"
-            v-model="lifeInsurance"
+            :value="yes"
+            v-model="updateRadio2A"
           />
           <label for="life_insurance">はい</label>
           <input
             type="radio"
             id="life_insurance_no"
             name="life_insurance"
-            value="no"
-            v-model="lifeInsurance"
+            :value="no"
+            v-model="updateRadio2A"
           />
           <label for="life_insurance">いいえ</label>
         </div>
       </section>
-      <section v-if="lifeInsurance">
+      <section v-if="updateRadio2A">
         <div class="qa_check2_2">
           <h2>
             現在、入院中ですか。または、最近３ヶ月以内に医師の診察・検査の結果、入院・手術をすすめられたことはありますか？
@@ -31,21 +31,21 @@
             type="radio"
             id="in_hospital_yes"
             name="in_hospital"
-            value="yes"
-            v-model="inHospital"
+            :value="yes"
+            v-model="updateRadio2B"
           />
           <label for="in_hospital">はい</label>
           <input
             type="radio"
             id="in_hospital_no"
             name="in_hospital"
-            value="no"
-            v-model="inHospital"
+            :value="no"
+            v-model="updateRadio2B"
           />
           <label for="in_hospital">いいえ</label>
         </div>
       </section>
-      <section v-if="inHospital">
+      <section v-if="updateRadio2B">
         <div class="qa_check2_3">
           <h2>
             過去５年以内に、病気やけがで、手術をうけたことまたは継続して７日以上の入院をしたことがありますか？
@@ -54,16 +54,16 @@
             type="radio"
             id="past_in_hospital_yes"
             name="past_in_hospital"
-            value="yes"
-            v-model="pastInHospital"
+            :value="yes"
+            v-model="updateRadio2C"
           />
           <label for="past_in_hospital">はい</label>
           <input
             type="radio"
             id="past_in_hospital_no"
             name="past_in_hospital"
-            value="no"
-            v-model="pastInHospital"
+            :value="no"
+            v-model="updateRadio2C"
           />
           <label for="past_in_hospital">いいえ</label>
         </div>
@@ -95,23 +95,42 @@ export default {
   },
   data() {
     return {
-      lifeInsurance: "",
-      inHospital: "",
-      pastInHospital: "",
+      yes: "はい",
+      no: "いいえ",
     };
   },
   methods: {
     toProfile() {
       this.$router.push({ path: "/" });
-      console.log(this.lifeInsurance);
-      console.log(this.inHospital);
-      console.log(this.pastInHospital);
     },
     toConsul() {
       this.$router.push({ path: "consul" });
-      console.log(this.lifeInsurance);
-      console.log(this.inHospital);
-      console.log(this.pastInHospital);
+    },
+  },
+  computed: {
+    updateRadio2A: {
+      get() {
+        return this.$store.state.radioValue2A;
+      },
+      set(value) {
+        this.$store.commit("updateRadio2A", value);
+      },
+    },
+    updateRadio2B: {
+      get() {
+        return this.$store.state.radioValue2B;
+      },
+      set(value) {
+        this.$store.commit("updateRadio2B", value);
+      },
+    },
+    updateRadio2C: {
+      get() {
+        return this.$store.state.radioValue2C;
+      },
+      set(value) {
+        this.$store.commit("updateRadio2C", value);
+      },
     },
   },
 };
