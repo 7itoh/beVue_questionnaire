@@ -3,47 +3,54 @@
 import { createStore } from 'vuex';
 
 const state = {
-    radioValue1A : '',
-    calender : {
-        year : '',
-        month : '',
-        day : '',
-    },
-    radioValue2A : '',
-    radioValue2B : '',
-    radioValue2C : '',
-    textAreaValue : '',
+    genderValue : '',
+    yearValue: '',
+    monthValue: '',
+    dayValue: '',
+    lifeInsuranceValue : '',
+    inHospitalValue : '',
+    pastInHospitalValue : '',
+    consulValue : '',
 };
-const getters = {};
+const getters = {
+    genderValue: state => state.genderValue,
+    lifeInsuranceValue: state => state.lifeInsuranceValue,
+    inHospitalValue: state => state.inHospitalValue,
+    pastInHospitalValue: state => state.pastInHospitalValue,
+    yearValue: state => state.yearValue,
+    monthValue: state => state.monthValue,
+    dayValue: state => state.dayValue,
+    consulValue: state => state.consulValue
+};
 const mutations = {
-    updateRadio1A(state, newRadio) { 
-        state.radioValue1A = newRadio;
+    updateGenderRadio(state, newRadio) { 
+        state.genderValue = newRadio;
     },
     updateYear(state, newYear) { 
-        state.calender.year = newYear;
+        state.yearValue = newYear;
     },
     updateMonth(state, newMonth) { 
-        state.calender.month = newMonth;
+        state.monthValue = newMonth;
     },
     updateDay(state, newDay) { 
-        state.calender.day = newDay;
+        state.dayValue = newDay;
     },
-    updateRadio2A(state, newRadio) { 
-        state.radioValue2A = newRadio;
+    updateLifeInsuranceRadio(state, newRadio) { 
+        state.lifeInsuranceValue = newRadio;
     },
-    updateRadio2B(state, newRadio) { 
-        state.radioValue2B = newRadio;
+    updateInHospitalRadio(state, newRadio) { 
+        state.inHospitalValue = newRadio;
     },
-    updateRadio2C(state, newRadio) { 
-        state.radioValue2C = newRadio;
+    updatePastInHospitalRadio(state, newRadio) { 
+        state.pastInHospitalValue = newRadio;
     },
-    updateTextArea(state, newTextArea) { 
-        state.textAreaValue = newTextArea;
+    updateConsulText(state, newTextArea) { 
+        state.consulValue = newTextArea;
     }
 };
 const actions = {
-    updateTextArea({ commit }, newTextArea) { 
-        commit('updateTextArea', newTextArea);
+    updateConsulText({ commit }, newTextArea) { 
+        commit('updateConsulText', newTextArea);
     },
     updateYear({ commit }, newYear) { 
         commit('updateYear', newYear);

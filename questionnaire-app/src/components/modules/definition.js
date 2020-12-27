@@ -83,13 +83,15 @@ class YearDate {
     }
     setMonth() { 
         for (let j = 0; j <= this.maxNumMonth; j++) { 
-            this.monthList.push(this.month + j);
+            this.monthList.push(`${this.month}`);
+            this.month++
         }
         return this.monthList;
     }
     setDay() {
         for (let k = 0; k <= this.maxNumDay; k++) { 
-            this.dayList.push(this.day + k);
+            this.dayList.push(`${this.day}`);
+            this.day++;
         }
         return this.dayList;
     }

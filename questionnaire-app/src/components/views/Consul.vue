@@ -1,7 +1,7 @@
 <template>
   <div class="consul">
     <form action="">
-      <TextArea :title="title" :value="inptText" @input="updateTextArea" />
+      <TextArea :title="title" :value="inptConsul" @input="updateConsulText" />
     </form>
     <div>
       <BaseButton
@@ -33,13 +33,13 @@ export default {
     };
   },
   computed: {
-    inptText() {
-      return this.$store.getters.textAreaValue;
+    inptConsul() {
+      return this.$store.getters.consulValue;
     },
   },
   methods: {
-    updateTextArea(e) {
-      this.$store.dispatch("updateTextArea", e.target.value);
+    updateConsulText(e) {
+      this.$store.dispatch("updateConsulText", e.target.value);
     },
     toQAcheck() {
       this.$router.push("qacheck");

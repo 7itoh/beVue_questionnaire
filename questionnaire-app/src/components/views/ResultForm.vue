@@ -3,39 +3,43 @@
     <form action="">
       <div>
         <div>
-          {{ gender }}
+          <p>-性別-</p>
         </div>
-        {{ inptRadio1A }}
+        {{ genderValue }}
       </div>
       <div>
         <div>
-          {{ birthday }}
+          <p>-生年月日-</p>
         </div>
         {{ `${inptBirthYear} ${inptBirthMonth}月 ${inptBirthDay}日` }}
       </div>
       <div>
         <div>
-          {{ lifeInsurance }}
+          <p>-生命保険に加入していますか-</p>
         </div>
-        {{ inptRadio2A }}
+        {{ lifeInsuranceValue }}
       </div>
       <div>
         <div>
-          {{ inHospital }}
+          <p>
+            -現在、入院中ですか。または、最近３ヶ月以内に医師の診察・検査の結果、入院・手術をすすめられたことはありますか？-
+          </p>
         </div>
-        {{ inptRadio2B }}
+        {{ inHospitalValue }}
       </div>
       <div>
         <div>
-          {{ pastInHospital }}
+          <p>
+            -過去５年以内に、病気やけがで、手術をうけたことまたは継続して７日以上の入院をしたことがありますか?-
+          </p>
         </div>
-        {{ inptRadio2C }}
+        {{ pastInHospitalValue }}
       </div>
       <div>
         <div>
-          {{ consul }}
+          <p>-ご相談内容-</p>
         </div>
-        {{ inptTextArea }}
+        {{ inptConsulText }}
       </div>
     </form>
     <div>
@@ -44,7 +48,7 @@
         class="button is-primary"
         action="前へ戻る"
       />
-      <BaseButton @click="sendForm" class="button is-primary" action="送信" />
+      <BaseButton class="button is-primary" action="送信" />
     </div>
   </section>
 </template>
@@ -56,50 +60,35 @@ export default {
   components: {
     BaseButton,
   },
-  data() {
-    return {
-      gender: "-性別-",
-      birthday: "-生年月日-",
-      lifeInsurance: "-生命保険に加入していますか-",
-      inHospital:
-        "-現在、入院中ですか。または、最近３ヶ月以内に医師の診察・検査の結果、入院・手術をすすめられたことはありますか？-",
-      pastInHospital:
-        "-過去５年以内に、病気やけがで、手術をうけたことまたは継続して７日以上の入院をしたことがありますか?-",
-      consul: "-ご相談内容-",
-    };
-  },
   computed: {
-    inptRadio1A() {
-      return this.$store.state.radioValue1A;
+    genderValue() {
+      return this.$store.getters.genderValue;
     },
-    inptRadio2A() {
-      return this.$store.state.radioValue2A;
+    lifeInsuranceValue() {
+      return this.$store.getters.lifeInsuranceValue;
     },
-    inptRadio2B() {
-      return this.$store.state.radioValue2B;
+    inHospitalValue() {
+      return this.$store.getters.inHospitalValue;
     },
-    inptRadio2C() {
-      return this.$store.state.radioValue2C;
+    pastInHospitalValue() {
+      return this.$store.getters.pastInHospitalValue;
     },
     inptBirthYear() {
-      return this.$store.state.calender.year;
+      return this.$store.getters.yearValue;
     },
     inptBirthMonth() {
-      return this.$store.state.calender.month;
+      return this.$store.getters.monthValue;
     },
     inptBirthDay() {
-      return this.$store.state.calender.day;
+      return this.$store.getters.dayValue;
     },
-    inptTextArea() {
-      return this.$store.state.textAreaValue;
+    inptConsulText() {
+      return this.$store.getters.consulValue;
     },
   },
   methods: {
     toConsul() {
       this.$router.push("consul");
-    },
-    sendForm() {
-      console.log("仮設Button");
     },
   },
 };

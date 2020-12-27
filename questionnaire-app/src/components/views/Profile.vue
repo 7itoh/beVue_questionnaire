@@ -7,14 +7,14 @@
             type="radio"
             name="gender"
             :value="male"
-            v-model="updateRadio1"
+            v-model="updateGenderRadio"
           />
           <label for="gender">男性</label>
           <input
             type="radio"
             name="gender"
             :value="female"
-            v-model="updateRadio1"
+            v-model="updateGenderRadio"
           />
           <label for="gender">女性</label>
         </div>
@@ -22,22 +22,42 @@
       <!-- <BirthCalender /> -->
       <div class="birth_calender">
         <!-- 年の選択 -->
-        <select class="select" v-model="yearSelected">
-          <option v-for="(year, index) in yearList" :key="index" :value="year">
+        <select
+          class="select"
+          :value="yearSelected"
+          @change="updateCalenderYear"
+        >
+          <option
+            v-for="(year, indexYear) in yearList"
+            :key="indexYear"
+            :value="year"
+          >
             {{ year }}
           </option>
         </select>
         <label for="yearSelected">年</label>
         <!-- 月の選択 -->
-        <select class="select" v-model="monthSelected">
-          <option v-for="month in monthList" :key="month" :value="month">
+        <select
+          class="select"
+          :value="monthSelected"
+          @change="updateCalenderMonth"
+        >
+          <option
+            v-for="(month, indexMonth) in monthList"
+            :key="indexMonth"
+            :value="month"
+          >
             {{ month }}
           </option>
         </select>
         <label for="monthSelected">月</label>
         <!-- 日の選択 -->
-        <select class="select" v-model="daySelected">
-          <option v-for="day in dayList" :key="day" :value="day">
+        <select class="select" :value="daySelected" @change="updateCalenderDay">
+          <option
+            v-for="(day, indexDay) in dayList"
+            :key="indexDay"
+            :value="day"
+          >
             {{ day }}
           </option>
         </select>
@@ -54,14 +74,12 @@
   </div>
 </template>
 <script>
-// import BirthCalender from "../elements/BirthCalender";
 import BaseButton from "../elements/BaseButton";
 import yearDate from "../modules/definition";
 
 export default {
   name: "Profile",
   components: {
-    // BirthCalender,
     BaseButton,
   },
   data() {
@@ -77,22 +95,27 @@ export default {
     };
   },
   computed: {
-    updateRadio1: {
+    updateGenderRadio: {
       get() {
-        return this.$store.state.radioValue1A;
+        return this.$store.getters.genderValue;
       },
       set(value) {
-        this.$store.commit("updateRadio1A", value);
+        this.$store.commit("updateGenderRadio", value);
       },
     },
   },
   methods: {
     toQAcheck() {
       this.$router.push({ path: "qacheck" });
-      // ↓カスタムコンポーネントを利用した値の取得がまだできていません。
-      this.$store.state.calender.year = this.yearSelected;
-      this.$store.state.calender.month = this.monthSelected;
-      this.$store.state.calender.day = this.daySelected;
+    },
+    updateCalenderYear(e) {
+      this.$store.dispatch("updateYear", e.target.value);
+    },
+    updateCalenderMonth(e) {
+      this.$store.dispatch("updateMonth", e.target.value);
+    },
+    updateCalenderDay(e) {
+      this.$store.commit("updateDay", e.target.value);
     },
   },
   created() {
