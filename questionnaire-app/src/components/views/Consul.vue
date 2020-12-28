@@ -1,6 +1,7 @@
 <template>
   <div class="consul">
     <form action="">
+      <h2>-ご相談内容-</h2>
       <TextArea :title="title" :value="inptConsul" @input="updateConsulText" />
     </form>
     <div>
@@ -26,11 +27,6 @@ export default {
   components: {
     TextArea,
     BaseButton,
-  },
-  data() {
-    return {
-      title: "-ご相談内容-",
-    };
   },
   computed: {
     inptConsul() {
